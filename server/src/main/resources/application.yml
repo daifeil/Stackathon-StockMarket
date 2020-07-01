@@ -6,14 +6,17 @@ spring:
     url: jdbc:mysql://localhost:3306/stock?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
     username: root
     password: 1qazxsw2
-    name: fsnre
+    name: stock
     maxActive: 20
     initialSize: 1
     maxWait: 60000
-
-mybatis:
-  mapper-locations: mapper/*.xml
-  configuration.map-underscore-to-camel-case: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+#mybatis:
+#  mapper-locations: mapper/*.xml
+#  configuration.map-underscore-to-camel-case: true
 server:
   port: 8082
 mapper:

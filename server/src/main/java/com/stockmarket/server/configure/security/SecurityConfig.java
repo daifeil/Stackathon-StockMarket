@@ -91,8 +91,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/configuration/security",
                 "/swagger-ui.html",
                 "/webjars/**",
-               "/api/v1/unprotected/**"
-
+                "/api/v1/unprotected/**"
               };
         web.ignoring().mvcMatchers(ignores);
     }

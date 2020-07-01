@@ -3,6 +3,9 @@ package com.stockmarket.server.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+
 /**
  * @author daifeil@cn.ibm.com
  * @description
@@ -10,9 +13,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Entity
 public class IpoDO {
-    private String companyCode;
-    private String exchangeCode;
+    @EmbeddedId
+    private IpoKey id;
+//    private String companyCode;
+//    private String exchangeCode;
     private float price;
     private long totalShare;
     private String openTime;

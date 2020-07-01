@@ -25,7 +25,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public ResponseEntity userConfirm(String username) {
-        userMapper.setUserConfirmed(username);
+//        userMapper.setUserConfirmed(username);
         return ResponseEntity.ok().build();
     }
 
@@ -33,10 +33,10 @@ public class UserServiceImp implements UserService {
     public ResponseEntity addUser(UserDO userDO) {
 
         userDO.setPassword(passwordEncoder.encode(userDO.getPassword()));
-        if(userMapper.existsWithPrimaryKey(userDO.getUsername())){ // user already exists
+        if(userMapper.existsById(userDO.getUsername())){ // user already exists
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
         }
-        userMapper.insert(userDO);
+        userMapper.save(userDO);
         return ResponseEntity.ok(null);
     }
 
@@ -46,6 +46,6 @@ public class UserServiceImp implements UserService {
             // return forbidden when you are not admin and trying to get other person's info
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
-        return ResponseEntity.ok(userMapper.selectByPrimaryKey(username));
+        return ResponseEntity.ok(userMapper.findById(username).get());
     }
 }
